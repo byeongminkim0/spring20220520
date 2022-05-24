@@ -1,10 +1,15 @@
 package com.choong.spr.controller.ex02;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.choong.spr.domain.ex02.Book;
@@ -113,6 +118,35 @@ public class Ex03Controller {
 		
 		return b; 
 		
+	}
+	
+	
+	@GetMapping("sub15")
+	public Map<String, String> method15() {
+		Map<String, String> map = new HashMap<>();
+		map.put("name", "손흥민");
+		map.put("age", "30");
+		map.put("address", "london");
+		
+		return map;
+	}
+	
+	@GetMapping("sub17")
+	public ResponseEntity<String> method17() {
+		
+		return ResponseEntity.status(500).body("internal server error");
+		
+	}
+	
+	@GetMapping("sub18")
+	public ResponseEntity<String> method18() {
+		boolean success = Math.random() > 0.5;
+		
+		if(success) {
+			return ResponseEntity.ok().body("data you want");
+		} else {
+			return ResponseEntity.status(500).body("something wrong");
+		}
 	}
 }
 
